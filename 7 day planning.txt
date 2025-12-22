@@ -1,0 +1,212 @@
+===============================
+7-DAY EXECUTION CHECKLIST (WEB SCRAPING + AUTOMATION)
+===============================
+
+GOAL: Complete 3 demo projects (Login Dashboard, Public E-commerce, Advanced Scalable Scraper) and start applying to Upwork jobs within 7 days.
+
+---
+
+DAY 1: LOGIN DASHBOARD SCRAPER (OrangeHRM)
+Website: https://opensource-demo.orangehrmlive.com/
+Credentials: Username: Admin | Password: admin123
+
+Tasks:
+1. Implement login automation with Playwright
+2. Navigate to PIM → Employee List
+3. Scrape:
+   - Employee ID
+   - First Name
+   - Last Name
+   - Job Title
+   - Employment Status
+4. Handle pagination (extract 10–30 rows for demo)
+5. Export data to CSV and Excel
+6. Add error handling for network/page failures
+
+---
+
+DAY 2: LOGIN DASHBOARD SCRAPER - CLEAN & DOCUMENT
+1. Refactor code for readability
+2. Add README.md with:
+   - Project overview
+   - Features
+   - Output format
+   - Ethical notice
+3. Push to GitHub
+4. Test code to ensure it runs reliably
+
+---
+
+DAY 3: PUBLIC DYNAMIC E-COMMERCE SCRAPER
+Website: https://webscraper.io/test-sites/e-commerce/allinone
+
+Tasks:
+1. Navigate category pages
+2. Scrape product data:
+   - Name
+   - Price
+   - Short description
+   - Rating
+   - Tags (if any)
+   - Product URL (optional)
+3. Handle infinite scroll or pagination
+4. Export data to CSV/JSON
+5. Add logging of progress and errors
+
+---
+
+DAY 4: PUBLIC DYNAMIC E-COMMERCE SCRAPER - CLEAN & DOCUMENT
+1. Refactor code
+2. Add README.md:
+   - Overview
+   - Features
+   - Output
+   - Ethical disclaimer
+3. Push to GitHub
+4. Test end-to-end
+
+---
+
+DAY 5: ADVANCED SCALABLE MULTI-URL SCRAPER
+Website: https://quotes.toscrape.com/js/
+
+Tasks:
+1. Implement config-based scraping (YAML or JSON)
+   - start_url
+   - max_retries
+   - timeout
+   - output_format
+2. Scrape all pages:
+   - Quote text
+   - Author name
+   - Author detail URL
+   - Tags
+   - Page number (optional)
+3. Add retry logic for failed pages
+4. Add resume capability (start from last successful page)
+5. Log scraping progress and errors
+6. Export data to CSV/JSON
+
+---
+
+DAY 6: ADVANCED SCALABLE SCRAPER - CLEAN & DOCUMENT
+1. Refactor code
+2. Add README.md:
+   - Overview
+   - Features
+   - Output formats
+   - Ethical note
+3. Push to GitHub
+4. Test reliability (stop/resume, retries)
+
+---
+
+DAY 7: UPWORK PROFILE & APPLICATION PREP
+1. Update Upwork profile:
+   - Headline: "Python Web Scraping & Automation | Playwright"
+   - Overview: Mention 3 demos with GitHub links
+2. Prepare 5–10 proposals to send daily
+3. Target jobs:
+   - Scraping dynamic websites
+   - Data extraction
+   - Automation tasks
+4. Review first proposals, attach GitHub demos
+5. Start sending applications
+
+---
+
+===============================
+AGGRESSIVE BUT PROFESSIONAL PROPOSAL TEMPLATES
+===============================
+
+Template 1: Login/Protected Sites
+
+Hi [Client Name],
+
+I specialize in Python web scraping and automation using Playwright. I can build a solution to extract your data from login-protected dashboards, navigate menus, handle dynamic content, and export structured CSV/Excel files.
+
+I’ve built similar projects:
+- Login-based dashboard scraper (demo: [GitHub link])
+- Dynamic e-commerce scraper (demo: [GitHub link])
+
+My approach ensures:
+- Pagination handling
+- Retry logic for reliability
+- Clean, ready-to-use output
+
+Could you clarify if the dashboard requires 2FA or CAPTCHA?
+
+Looking forward to helping you automate this task efficiently.
+
+Best regards,  
+[Your Name]
+
+---
+
+Template 2: Public / Dynamic Sites
+
+Hi [Client Name],
+
+I’m a Python web scraping and automation specialist with experience in Playwright. I can extract data from JS-heavy websites, handle pagination or infinite scrolling, and deliver structured CSV/JSON output.
+
+Relevant projects:
+- Dynamic product scraper: [GitHub link]
+- Advanced multi-URL scalable scraper: [GitHub link]
+
+I ensure:
+- Retry logic and error handling
+- Logging of progress
+- Clean, reliable data delivery
+
+Do you have a preferred format for the extracted data?
+
+Best regards,  
+[Your Name]
+
+---
+
+===============================
+TARGET JOB TYPES & SEARCH TIPS
+===============================
+
+Filter Jobs:
+- Category: Web, Mobile & Software Dev → Data Scraping & Automation
+- Keywords: “scraping”, “Playwright”, “automation”, “JS content”
+- Budget: $50–$500 (start with small jobs)
+- Avoid jobs asking to bypass CAPTCHA or scrape private SaaS
+
+Daily Target:
+- 5–10 proposals/day
+- Only relevant scraping/automation jobs
+- Focus on quality, not quantity
+
+---
+
+===============================
+SIMULATED CLIENT REQUEST & RESPONSE
+===============================
+
+**Client Post:**
+> “I need someone to extract all products from my JS-heavy e-commerce site into a CSV file. Must handle pagination, infinite scroll, and dynamic content.”
+
+**Your Response:**
+Hi [Client Name],
+
+I can build a reliable Python scraper using Playwright to extract all product information from your site. The scraper will handle infinite scroll, pagination, and dynamic content, and deliver clean CSV or JSON files. 
+
+I’ve completed similar projects:
+- JS-heavy e-commerce scraper: [GitHub link]
+- Multi-page scalable scraper: [GitHub link]
+
+I include logging, retry logic, and structured output to ensure accuracy. Could you confirm if the product pages require login or any CAPTCHA?
+
+Looking forward to automating this task efficiently.
+
+Best regards,  
+[Your Name]
+
+---
+
+===============================
+END OF PLAN
+===============================
