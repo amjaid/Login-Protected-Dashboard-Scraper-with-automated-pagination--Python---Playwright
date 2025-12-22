@@ -28,7 +28,7 @@ FEATURES
 TECHNOLOGIES USED
 --------------------------------------------------
 
-- Python 3.x
+- Python 3.14
 - Playwright (Sync API)
 - Pandas
 - OpenPyXL
