@@ -1,7 +1,7 @@
 import pandas as pd
 from playwright.sync_api import sync_playwright, Playwright, expect
 import time
-from config import BASE_URL, User_name, Pass_word, ITEM_SELECTOR
+from config import BASE_URL, User_name, Pass_word
 
 data = []
 #seen_links = set()
