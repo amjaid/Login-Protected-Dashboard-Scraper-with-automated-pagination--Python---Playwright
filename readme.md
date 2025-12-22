@@ -40,13 +40,21 @@ PROJECT STRUCTURE
 
 employee-data-scraper/
 ├── scraper.py                 # Main scraping script
+
 ├── config.py                  # Configuration file (credentials & base URL)
+
 ├── employees.csv              # Scraped employee data (CSV)
+
 ├── employee_data.xlsx         # Scraped employee data (Excel)
+
 ├── full_page_screenshot.png   # Full-page screenshot after scraping
+
 ├── requirements.txt           # Python dependencies
+
 ├── .gitignore                 # Git ignored files
+
 ├── venv/                      # Virtual environment (optional)
+
 └── README.txt                 # Project documentation
 
 
@@ -58,7 +66,9 @@ DO NOT CHANGE THIS SECTION.
 These credentials are public demo credentials.
 
 BASE_URL = "https://opensource-demo.orangehrmlive.com"
+
 User_name = "Admin"
+
 Pass_word = "admin123"
 
 --------------------------------------------------
