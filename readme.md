@@ -49,6 +49,7 @@ employee-data-scraper/
 ├── venv/                      # Virtual environment (optional)
 └── README.txt                 # Project documentation
 
+
 --------------------------------------------------
 CONFIGURATION
 --------------------------------------------------
