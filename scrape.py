@@ -20,7 +20,7 @@ def add_item(id, first_name, last_name, job_title, employment_type, department):
     })
 
 def scrape_current_page(page):
-    """Scrape data from the current page"""
+    #Scrape data from the current page
     page.wait_for_selector('div.oxd-table-card')
     employee_cards = page.locator('div.oxd-table-card')
     card_count = employee_cards.count()
