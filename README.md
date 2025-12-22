@@ -1,15 +1,19 @@
 EMPLOYEE DATA SCRAPER (PLAYWRIGHT + PYTHON)
 
-This project is a Python automation and web scraping script that logs into a web-based HR system and extracts employee information using Playwright (Sync API). The collected data is stored in both CSV and Excel formats for easy analysis and reporting.
+This project is a Python automation and web scraping script that logs into a web-based HR system (OrangeHRM demo)
+and extracts employee information using Playwright (Sync API).
+
+The scraper supports PAGINATION, meaning it automatically navigates through all available pages
+and collects employee data from each page before exporting it to CSV and Excel formats.
 
 NOTE:
-This project uses public demo credentials provided by OrangeHRM for learning and testing purposes.
+This project uses PUBLIC demo credentials provided by OrangeHRM for learning and testing purposes.
 
 --------------------------------------------------
 FEATURES
 --------------------------------------------------
 
-- Automated login using Playwright
+- Automated login using Playwright (Sync API)
 - Navigation to the PIM (Employee Information) section
 - Scrapes employee details:
   - Employee ID
@@ -18,11 +22,14 @@ FEATURES
   - Job Title
   - Employment Type
   - Department
-- Saves output data to:
+- Automatically handles pagination (Next Page button)
+- Scrapes data from ALL available pages
+- Saves extracted data to:
   - employees.csv
   - employee_data.xlsx
 - Captures a full-page screenshot after scraping
-- Uses structured and reliable CSS selectors
+- Modular code using helper functions
+- Uses reliable CSS selectors for stable scraping
 
 --------------------------------------------------
 TECHNOLOGIES USED
@@ -39,7 +46,7 @@ PROJECT STRUCTURE
 --------------------------------------------------
 
 employee-data-scraper/
-├── scraper.py                 # Main scraping script
+├── scraper.py                 # Main scraping script with pagination support
 
 ├── config.py                  # Configuration file (credentials & base URL)
 
@@ -53,23 +60,32 @@ employee-data-scraper/
 
 ├── .gitignore                 # Git ignored files
 
-├── venv/                      # Virtual environment (optional)
-
 └── README.txt                 # Project documentation
-
 
 --------------------------------------------------
 CONFIGURATION
 --------------------------------------------------
 
 DO NOT CHANGE THIS SECTION.
-These credentials are public demo credentials.
+These credentials are PUBLIC demo credentials provided by OrangeHRM.
 
 BASE_URL = "https://opensource-demo.orangehrmlive.com"
-
 User_name = "Admin"
-
 Pass_word = "admin123"
+
+--------------------------------------------------
+HOW IT WORKS
+--------------------------------------------------
+
+1. Launches a Chromium browser using Playwright
+2. Logs into the OrangeHRM demo website
+3. Navigates to the PIM module
+4. Scrapes employee data from the current page
+5. Clicks the "Next Page" button if available
+6. Repeats scraping until the last page is reached
+7. Stores all collected data in memory
+8. Exports the data to CSV and Excel files
+9. Takes a full-page screenshot for verification
 
 --------------------------------------------------
 INSTALLATION
@@ -77,8 +93,8 @@ INSTALLATION
 
 Step 1: Clone the repository
 
-git clone https://github.com/your-username/employee-data-scraper.git
-cd employee-data-scraper
+git clone https://github.com/amjaid/Login-Protected-Dashboard-Scraper-with-automated-pagination--Python---Playwright.git
+cd Login-Protected-Dashboard-Scraper-with-automated-pagination--Python---Playwright
 
 Step 2: Install dependencies
 
@@ -96,11 +112,20 @@ Run the scraper using:
 
 python scraper.py
 
+--------------------------------------------------
+OUTPUT
+--------------------------------------------------
+
 After execution, the following files will be generated:
 
 - employees.csv
 - employee_data.xlsx
 - full_page_screenshot.png
+
+The console will also display:
+- Number of employee cards per page
+- Current page number being scraped
+- Total employee records scraped
 
 --------------------------------------------------
 AUTHOR
@@ -114,6 +139,7 @@ Website: https://amjaid.com
 LICENSE
 --------------------------------------------------
 
-This project is intended for educational and personal use only.
+This project is intended for EDUCATIONAL and PERSONAL USE only.
 
-Please ensure you comply with the target website’s Terms of Service before performing any scraping activities.
+Please ensure you comply with the target website’s Terms of Service
+before performing any scraping activities.
