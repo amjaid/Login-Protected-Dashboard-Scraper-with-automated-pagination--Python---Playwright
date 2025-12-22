@@ -35,7 +35,7 @@ FEATURES
 TECHNOLOGIES USED
 --------------------------------------------------
 
-- Python 3.x
+- Python 3.14
 - Playwright (Sync API)
 - Pandas
 - OpenPyXL
@@ -93,8 +93,8 @@ INSTALLATION
 
 Step 1: Clone the repository
 
-git clone https://github.com/your-username/employee-data-scraper.git
-cd employee-data-scraper
+git clone https://github.com/amjaid/Login-Protected-Dashboard-Scraper-with-automated-pagination--Python---Playwright.git
+cd Login-Protected-Dashboard-Scraper-with-automated-pagination--Python---Playwright
 
 Step 2: Install dependencies
 
