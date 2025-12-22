@@ -1,10 +1,13 @@
-# Employee Data Scraper (Playwright + Python)
+EMPLOYEE DATA SCRAPER (PLAYWRIGHT + PYTHON)
 
 This project is a Python automation and web scraping script that logs into a web-based HR system and extracts employee information using Playwright (Sync API). The collected data is stored in both CSV and Excel formats for easy analysis and reporting.
 
----
+NOTE:
+This project uses public demo credentials provided by OrangeHRM for learning and testing purposes.
 
-## 📌 Features
+--------------------------------------------------
+FEATURES
+--------------------------------------------------
 
 - Automated login using Playwright
 - Navigation to the PIM (Employee Information) section
@@ -16,65 +19,101 @@ This project is a Python automation and web scraping script that logs into a web
   - Employment Type
   - Department
 - Saves output data to:
-  - `employees.csv`
-  - `employee_data.xlsx`
+  - employees.csv
+  - employee_data.xlsx
 - Captures a full-page screenshot after scraping
-- Uses robust CSS selectors for data extraction
+- Uses structured and reliable CSS selectors
 
----
+--------------------------------------------------
+TECHNOLOGIES USED
+--------------------------------------------------
 
-## 🛠️ Technologies Used
-
-- Python 3.x
+- Python 3.14
 - Playwright (Sync API)
 - Pandas
 - OpenPyXL
 - Chromium Browser
 
----
+--------------------------------------------------
+PROJECT STRUCTURE
+--------------------------------------------------
 
-## 📂 Project Structure
+employee-data-scraper/
+├── scraper.py                 # Main scraping script
 
-├── scraper.py # Main scraping script
-├── config.py # Configuration file (credentials & base URL)
-├── employees.csv # Scraped data (CSV)
-├── employee_data.xlsx # Scraped data (Excel)
-├── full_page_screenshot.png # Screenshot of the employee page
-└── README.md # Project documentation
+├── config.py                  # Configuration file (credentials & base URL)
 
-## ⚙️ Configuration
+├── employees.csv              # Scraped employee data (CSV)
 
-BASE_URL = "https://opensource-demo.orangehrmlive.com"  # starting page
+├── employee_data.xlsx         # Scraped employee data (Excel)
+
+├── full_page_screenshot.png   # Full-page screenshot after scraping
+
+├── requirements.txt           # Python dependencies
+
+├── .gitignore                 # Git ignored files
+
+├── venv/                      # Virtual environment (optional)
+
+└── README.txt                 # Project documentation
+
+
+--------------------------------------------------
+CONFIGURATION
+--------------------------------------------------
+
+DO NOT CHANGE THIS SECTION.
+These credentials are public demo credentials.
+
+BASE_URL = "https://opensource-demo.orangehrmlive.com"
+
 User_name = "Admin"
+
 Pass_word = "admin123"
 
-🚀 Installation
+--------------------------------------------------
+INSTALLATION
+--------------------------------------------------
 
-step -1 
+Step 1: Clone the repository
+
 git clone https://github.com/your-username/employee-data-scraper.git
 cd employee-data-scraper
 
-step -2
-Install dependencies:
+Step 2: Install dependencies
+
 pip install playwright pandas openpyxl
 
-step -3
-Install Playwright browsers:
+Step 3: Install Playwright browsers
+
 playwright install
 
-▶️ Usage
+--------------------------------------------------
+USAGE
+--------------------------------------------------
+
 Run the scraper using:
+
 python scraper.py
 
-After execution, the scraped employee data will be saved as:
-employees.csv
-employee_data.xlsx
-A full-page screenshot will also be generated.
+After execution, the following files will be generated:
 
-🧑‍💻 Author
+- employees.csv
+- employee_data.xlsx
+- full_page_screenshot.png
+
+--------------------------------------------------
+AUTHOR
+--------------------------------------------------
+
 Abdullah Mohammad Jaid
-🌐 Website: https://amjaid.com
 
-📄 License
-This project is for educational and personal use.
-Make sure to comply with the target website’s Terms of Service before scraping.
+Website: https://amjaid.com
+
+--------------------------------------------------
+LICENSE
+--------------------------------------------------
+
+This project is intended for educational and personal use only.
+
+Please ensure you comply with the target website’s Terms of Service before performing any scraping activities.
