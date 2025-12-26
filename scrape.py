@@ -1,15 +1,14 @@
-import pandas as pd
-from playwright.sync_api import sync_playwright, Playwright, expect
 import time
-from config import BASE_URL, User_name, Pass_word
+import pandas as pd
+from playwright.sync_api import sync_playwright, expect, TimeoutError
+import config
 
 data = []
-#seen_links = set()
 
+# ------------------------
+# Helpers
+# ------------------------
 def add_item(id, first_name, last_name, job_title, employment_type, department):
-    #if id in seen_links:
-    #   return
-    #seen_links.add(id)
     data.append({
         "ID": id,
         "First Name": first_name,
@@ -19,104 +18,125 @@ def add_item(id, first_name, last_name, job_title, employment_type, department):
         "Department": department
     })
 
+
+def safe_text(locator):
+    try:
+        return locator.inner_text().strip()
+    except:
+        return "N/A"
+
+
+# ------------------------
+# Scraping Logic
+# ------------------------
 def scrape_current_page(page):
-    #Scrape data from the current page
-    page.wait_for_selector('div.oxd-table-card')
-    employee_cards = page.locator('div.oxd-table-card')
-    card_count = employee_cards.count()
-    print(f"Found {card_count} employee cards on this page.")
+    cards = page.locator(config.EMPLOYEE_CARD)
+    expect(cards.first).to_be_visible()
 
-    for i in range(card_count):
-        card = employee_cards.nth(i)
-        
-        # Scrape Employee ID (2nd column)
-        id_element = card.locator('div.oxd-table-row > div:nth-child(2) div')
-        id = id_element.inner_text() if id_element.count() > 0 else "N/A"
 
-        # Scrape First Name (3rd column)
-        first_name_element = card.locator('div.oxd-table-row > div:nth-child(3) div')
-        first_name = first_name_element.inner_text() if first_name_element.count() > 0 else "N/A"
 
-        # Scrape Last Name (4th column)
-        last_name_element = card.locator('div.oxd-table-row > div:nth-child(4) div')
-        last_name = last_name_element.inner_text() if last_name_element.count() > 0 else "N/A"
+    cards = page.locator(config.EMPLOYEE_CARD)
+    count = cards.count()
+    print(f"Found {count} employee cards")
 
-        # Scrape Job Title (5th column)
-        job_title_element = card.locator('div.oxd-table-row > div:nth-child(5) div')
-        job_title = job_title_element.inner_text() if job_title_element.count() > 0 else "N/A"
+    for i in range(count):
+        card = cards.nth(i)
 
-        # Scrape Employment Type (6th column)
-        employment_type_element = card.locator('div.oxd-table-row > div:nth-child(6) div')
-        employment_type = employment_type_element.inner_text() if employment_type_element.count() > 0 else "N/A"
+        add_item(
+            safe_text(card.locator('div:nth-child(2) div')),
+            safe_text(card.locator('div:nth-child(3) div')),
+            safe_text(card.locator('div:nth-child(4) div')),
+            safe_text(card.locator('div:nth-child(5) div')),
+            safe_text(card.locator('div:nth-child(6) div')),
+            safe_text(card.locator('div:nth-child(7) div')),
+        )
 
-        # Scrape Department (7th column)
-        department_element = card.locator('div.oxd-table-row > div:nth-child(7) div')
-        department = department_element.inner_text() if department_element.count() > 0 else "N/A"
 
-        # Add the scraped data to the list
-        add_item(id, first_name, last_name, job_title, employment_type, department)
+def click_next_page(page):
+    next_icon = page.locator(config.NEXT_BUTTON_ICON)
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
-    page = browser.new_page()
-    page.goto(BASE_URL)
+    if next_icon.count() == 0:
+        return False
 
-    # Log in
-    page.wait_for_selector('input[placeholder="Username"]')
-    page.wait_for_selector('input[placeholder="Password"]')
-    
-    page.fill('input[placeholder="Username"]', User_name)
-    page.fill('input[placeholder="Password"]', Pass_word)
+    button = next_icon.locator("..")
 
-    page.click('button[type="submit"]')
+    disabled = (
+        button.get_attribute("disabled") is not None or
+        "disabled" in (button.get_attribute("class") or "")
+    )
 
-    # Go to employee page
-    page.click('text="PIM"')
+    if disabled:
+        return False
 
-    # Start Scraping with pagination
-    page_num = 1
-    
-    while True:
-        print(f"\nScraping page {page_num}...")
-        
-        # Wait for page to load and scrape data
-        scrape_current_page(page)
-        
-        # Check if there's a next page button and if it's clickable
-        next_button = page.locator('button i.bi-chevron-right')
-        
-        if next_button.count() > 0:
-            # Check if next button is disabled (for last page)
-            next_button_parent = page.locator('button i.bi-chevron-right').locator('..')
-            
-            # Check for disabled attribute or class that indicates the button is disabled
-            is_disabled = (
-                next_button_parent.get_attribute('disabled') is not None or
-                'disabled' in (next_button_parent.get_attribute('class') or '') or
-                '--disabled' in (next_button_parent.get_attribute('class') or '')
-            )
-            
-            if not is_disabled:
-                print("Moving to next page...")
-                next_button.click()
-                page_num += 1
-                # Wait for page to load after clicking next
-                page.wait_for_load_state('networkidle')
-                time.sleep(1)  # Small delay to ensure page is fully loaded
-            else:
-                print("Reached the last page.")
-                break
-        else:
-            print("No next page button found. Stopping.")
-            break
+    button.click()
+    page.wait_for_load_state("networkidle")
+    time.sleep(1)
+    return True
 
-    print(f"\nTotal scraped {len(data)} employee records.")
-    
-    df = pd.DataFrame(data)
-    df.to_csv('employees.csv', index=False)
-    df.to_excel("employee_data.xlsx", index=False, engine='openpyxl')
-    print("Data saved to employees.xlsx and employees.csv")
 
-    page.screenshot(path="full_page_screenshot.png", full_page=True)
+# ------------------------
+# Main Runner
+# ------------------------
+def run():
+    retries = 0
 
-    browser.close()
+    while retries < config.MAX_RETRIES:
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(
+                    headless=config.HEADLESS,
+                    slow_mo=config.SLOW_MO
+                )
+
+                page = browser.new_page()
+                page.set_default_timeout(config.PAGE_TIMEOUT)
+
+                # Go to site
+                page.goto(config.BASE_URL)
+
+                # Login
+                expect(page.locator(config.USERNAME_INPUT)).to_be_visible()
+                page.fill(config.USERNAME_INPUT, config.USERNAME)
+                page.fill(config.PASSWORD_INPUT, config.PASSWORD)
+                page.click(config.LOGIN_BUTTON)
+
+                # Navigate to PIM
+                expect(page.locator(config.PIM_MENU)).to_be_visible()
+                page.click(config.PIM_MENU)
+
+                # Pagination loop
+                page_num = 1
+                while True:
+                    print(f"\nScraping page {page_num}")
+                    scrape_current_page(page)
+
+                    if not click_next_page(page):
+                        break
+
+                    page_num += 1
+
+                # Save data
+                df = pd.DataFrame(data)
+                df.to_csv(config.CSV_OUTPUT, index=False)
+                df.to_excel(config.EXCEL_OUTPUT, index=False)
+
+                print(f"\nScraped {len(data)} records successfully")
+                browser.close()
+                return
+
+        except TimeoutError as e:
+            retries += 1
+            print(f"[Retry {retries}] Timeout error: {e}")
+            time.sleep(config.RETRY_DELAY)
+
+        except Exception as e:
+            print("Fatal error:", e)
+            try:
+                page.screenshot(path=config.SCREENSHOT_ON_ERROR, full_page=True)
+            except:
+                pass
+            raise
+
+
+if __name__ == "__main__":
+    run()
