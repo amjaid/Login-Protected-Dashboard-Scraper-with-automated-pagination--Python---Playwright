@@ -50,7 +50,6 @@ Scrapes the following fields for every employee:
 
 ## 📁 Project Structure
 
-```text
 employee-data-scraper/
 ├── scraper.py                 # 🚀 Main scraping script with pagination logic
 
