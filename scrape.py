@@ -33,8 +33,6 @@ def scrape_current_page(page):
     cards = page.locator(config.EMPLOYEE_CARD)
     expect(cards.first).to_be_visible()
 
-
-
     cards = page.locator(config.EMPLOYEE_CARD)
     count = cards.count()
     print(f"Found {count} employee cards")
